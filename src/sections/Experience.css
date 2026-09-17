@@ -1,0 +1,22 @@
+.experience-card { padding: 32px 36px; }
+.experience-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.experience-head h3 { font-size: 1.25rem; }
+.experience-head span { color: var(--color-text-soft); font-weight: 600; font-size: 0.9rem; }
+.experience-desc { line-height: 1.7; margin-bottom: 20px; }
+
+.experience-clients { display: flex; flex-wrap: wrap; gap: 16px; }
+.client-pill {
+  flex: 1;
+  min-width: 220px;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+}
+.client-pill strong { display: block; color: var(--color-accent); margin-bottom: 6px; }
+.client-pill span { color: var(--color-text-soft); font-size: 0.9rem; line-height: 1.5; }

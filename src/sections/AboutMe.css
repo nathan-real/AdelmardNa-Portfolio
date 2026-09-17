@@ -1,0 +1,183 @@
+.about-grid-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.skill-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.about-grid-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.about-text {
+  padding: 36px;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.about-text p {
+  margin: 0 0 16px;
+}
+
+.about-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 24px 0 18px;
+}
+
+.about-links {
+  display: flex;
+  gap: 14px;
+}
+
+.about-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.about-links a:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.skill-group {
+  padding: 22px 26px;
+}
+
+.skill-group h4 {
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.skill-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.skill-group li {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+
+.skill-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.skill-group ul+.skill-logos {
+  margin-top: 14px;
+}
+
+.skill-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 76px;
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+
+.skill-logo:hover {
+  transform: scale(1.12);
+}
+
+.skill-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.skill-logo-fallback {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-bg-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-soft);
+}
+
+.skill-logo-name {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.skill-logo:hover .skill-logo-name {
+  color: var(--color-accent);
+}
+
+@media (max-width: 1100px) {
+  .about-grid-main {
+    grid-template-columns: 1fr;
+  }
+
+  .about-text {
+    grid-column: unset;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .about-grid-main,
+  .about-grid-secondary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.skill-stack .skill-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.google-play-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+}
