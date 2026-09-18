@@ -12,8 +12,6 @@ const NAV_ITEMS = [
   { to: 'contact', label: 'Contact', icon: FiMail },
 ]
 
-// Détecte si on est en mode navbar horizontale (mobile), pour savoir
-// quel axe de la souris doit piloter l'effet loupe.
 function useIsHorizontalNav(breakpoint = 900) {
   const [isHorizontal, setIsHorizontal] = useState(window.innerWidth <= breakpoint)
   useEffect(() => {
@@ -37,8 +35,7 @@ function DockIcon({ mouseX, mouseY, isHorizontal, item }) {
   const scaleRaw = useTransform(distance, [-90, 0, 90], [1, 1.6, 1])
   const scale = useSpring(scaleRaw, { mass: 0.1, stiffness: 200, damping: 14 })
 
-  // En mobile, on rend une icône figée à taille normale, sans animation
-  // liée à la souris — évite le bug de "coincé en grand" au tactile.
+
   if (isHorizontal) {
     return (
       <span ref={ref} className="nav-icon">
@@ -54,10 +51,48 @@ function DockIcon({ mouseX, mouseY, isHorizontal, item }) {
   )
 }
 
+const BOTTOM_MARGIN = 200
+
 export default function Navbar() {
   const mouseX = useMotionValue(Infinity)
   const mouseY = useMotionValue(Infinity)
   const isHorizontal = useIsHorizontalNav()
+  const [activeId, setActiveId] = useState('home')
+
+  useEffect(() => {
+    const sections = NAV_ITEMS
+      .map((item) => document.getElementById(item.to))
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+        if (visible.length > 0) {
+          const topMost = visible.reduce((a, b) =>
+            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+          )
+          setActiveId(topMost.target.id)
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    const handleScroll = () => {
+      const pageHeight = document.documentElement.scrollHeight
+      const viewportBottom = window.innerHeight + window.scrollY
+      if (pageHeight - viewportBottom <= BOTTOM_MARGIN) {
+        setActiveId('contact')
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const handleMouseMove = (e) => {
     mouseX.set(e.clientX)
@@ -76,12 +111,10 @@ export default function Navbar() {
           <li key={item.to}>
             <Link
               to={item.to}
-              spy={true}
               smooth={true}
               duration={500}
               offset={-40}
-              activeClass="active"
-              className="nav-link"
+              className={`nav-link${activeId === item.to ? ' active' : ''}`}
             >
               <DockIcon mouseX={mouseX} mouseY={mouseY} isHorizontal={isHorizontal} item={item} />
               <span className="nav-label">{item.label}</span>

@@ -1,5 +1,4 @@
-// Education / school timeline. Add more entries if you want to show
-// earlier years (high school, prep school...) later.
+
 const education = [
   {
     id: 'ensc',

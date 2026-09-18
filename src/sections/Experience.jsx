@@ -1,18 +1,15 @@
 import './Experience.css'
 
-// Extra section (your "something else?"): highlights the student-enterprise
-// experience (i2c) separately from the project details, since it's a nice
-// professional signal (real clients, teamwork) distinct from solo projects.
 const experiences = [
   {
     id: 'i2c',
-    title: 'i2c Student Enterprise — ENSC',
-    period: '2023 — present',
+    title: 'i2c Student Enterprise at ENSC',
+    period: '2025 — present',
     description:
       "i2c is ENSC's student enterprise: it carries out real missions for external clients, with project management, deadlines and real deliverables.",
     clients: [
       { name: 'SNS Solutions', mission: 'Mobile app prototype for pharmacy delivery drivers (UI/UX, Figma)' },
-      { name: 'Madic', mission: 'Motion design for gas station payment terminals (Figma, Jitter)' },
+      { name: 'Madic', mission: 'Motion design and illustration for gas station payment terminals (Figma, Jitter)' },
     ],
   },
 ]

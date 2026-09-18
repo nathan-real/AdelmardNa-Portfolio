@@ -1,5 +1,3 @@
-// Central place for all your external links.
-// Update these once, they are used across the whole site (Navbar, About, Footer...).
 const social = {
   github: 'https://github.com/nathan-real',
   linkedin: 'https://www.linkedin.com/in/nathan-adelmard-86a380392/',

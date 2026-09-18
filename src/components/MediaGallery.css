@@ -264,12 +264,12 @@
     gap: 14px;
   }
 
-.madic-pump-grid .media-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
+  .madic-pump-grid .media-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
 }
 
 @media (max-width: 380px) {
@@ -280,5 +280,104 @@
 
   .madic-bills {
     width: 170px;
+  }
+}
+
+/* Radar Time */
+
+.radar-time-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  width: 100%;
+}
+
+.radar-time-mockup {
+  flex: 0 0 auto;
+  height: 236px;
+  margin: 0;
+}
+
+.radar-time-mockup img {
+  width: auto;
+  height: 100%;
+  display: block;
+}
+
+.radar-time-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 488px;
+  flex: 0 0 auto;
+}
+
+.radar-time-grid .media-item {
+  flex: 0 0 110px;
+  aspect-ratio: 1;
+  width: 110px;
+  margin: 0;
+}
+
+.radar-time-grid .media-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 1080px) {
+  .radar-time-mockup {
+    height: 190px;
+  }
+
+  .radar-time-grid {
+    max-width: 400px;
+    gap: 14px;
+  }
+
+  .radar-time-grid .media-item {
+    flex: 0 0 90px;
+    width: 90px;
+  }
+}
+
+@media (max-width: 930px) {
+  .radar-time-gallery {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .radar-time-mockup {
+    height: 170px;
+  }
+
+  .radar-time-grid {
+    max-width: 330px;
+    gap: 10px;
+  }
+
+  .radar-time-grid .media-item {
+    flex: 0 0 75px;
+    width: 75px;
+  }
+}
+
+@media (max-width: 380px) {
+  .radar-time-mockup {
+    height: 150px;
+    aspect-ratio: 1;
+  }
+
+  .radar-time-grid {
+    max-width: 280px;
+    gap: 8px;
+  }
+
+  .radar-time-grid .media-item {
+    flex: 0 0 63px;
+    width: 63px;
   }
 }

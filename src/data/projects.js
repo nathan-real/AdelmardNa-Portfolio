@@ -1,12 +1,3 @@
-// ---------------------------------------------------------------------------
-// All project content lives here. To add / edit a project, only touch this
-// file + drop your media in src/assets/projects/<project>/...
-//
-// media.images -> array of { src, alt }
-// media.videos -> array of { src, poster?, caption? }
-// media.gifs -> array of { src, alt }
-// Import assets at the top so Vite bundles them correctly.
-// ---------------------------------------------------------------------------
 
 // --- Swipe Clean --------------------------------------------------
 import swipecleanLogo from '../assets/projects/swipe-clean/images/logo_transparant.png'
@@ -27,7 +18,15 @@ import modernEdgeLogo from '../assets/projects/modern-edge/images/modernedgeLogo
 import modernEdgeMockup from '../assets/projects/modern-edge/images/mockup-1.png'
 
 // --- Radar Time -------------------------------------------------------------
-// import radarTimeBlue from '../assets/projects/radar-time/images/blue.png'
+import radarTimeLogo from '../assets/projects/radar-time/images/RadarTimeLogo.png'
+import radarTime1 from '../assets/projects/radar-time/images/Blanc Miniature RadarTime.png'
+import radarTime2 from '../assets/projects/radar-time/images/Bleue Miniature RadarTime.png'
+import radarTime3 from '../assets/projects/radar-time/images/Orange Miniature RadarTime.png'
+import radarTime4 from '../assets/projects/radar-time/images/Rose Miniature RadarTime.png'
+import radarTime5 from '../assets/projects/radar-time/images/Rouge Miniature RadarTime.png'
+import radarTime6 from '../assets/projects/radar-time/images/Vert Miniature RadarTime.png'
+import radarTime7 from '../assets/projects/radar-time/images/Violet Miniature RadarTime.png'
+import radarTimeMockup from '../assets/projects/radar-time/mockups/MockupRadarTime.png'
 
 // --- Pharma delivery --------------------------------------------------------
 import deliveryScreen1 from '../assets/projects/pharma-delivery/figma/delivery.png'
@@ -43,7 +42,6 @@ import madicGif3 from '../assets/projects/madic-pump/gifs/problem.gif'
 import madicGif4 from '../assets/projects/madic-pump/gifs/cashok.gif'
 import billsLogo from '../assets/projects/madic-pump/icons/bills.png'
 import madicProjectLogo from '../assets/projects/madic-pump/icons/payment_cash_logo.png'
-
 
 
 const projects = [
@@ -177,18 +175,23 @@ const projects = [
     tags: ['Wear OS', 'Figma', 'Watch Face Studio', 'UI Design'],
     color: 'secondary',
     links: { github: null, googlePlay: 'https://play.google.com/store/apps/details?id=com.watchfacestudio.radartime' },
-    problem:
-      "My first watch face: learning the full design and packaging process for a Wear OS watch face, from Figma to Watch Face Studio.",
-    solution:
-      "Radar Time displays the time, day, month, steps, heart rate and battery, and offers 2 customizable complications, with 7 color variants.",
     features: [
       '7 color variants',
       '2 customizable complications',
       'Time, day, month, steps, heart rate, battery',
     ],
     media: {
-      images: [],
-      mockups: [],
+      logo: {src: radarTimeLogo, alt: "Radar Time Logo"},
+      images: [
+        { src: radarTime1, alt: 'Radar Time Color 1' },
+        { src: radarTime2, alt: 'Radar Time Color 2' },
+        { src: radarTime3, alt: 'Radar Time Color 3' },
+        { src: radarTime4, alt: 'Radar Time Color 4' },
+        { src: radarTime5, alt: 'Radar Time Color 5' },
+        { src: radarTime6, alt: 'Radar Time Color 6' },
+        { src: radarTime7, alt: 'Radar Time Color 7' },
+      ],
+      mockups: [{src: radarTimeMockup, alt: 'Radar Time Mockup'}],
     },
   },
 ]

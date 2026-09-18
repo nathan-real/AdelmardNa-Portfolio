@@ -1,6 +1,6 @@
 import './MediaGallery.css'
 
-export default function MediaGallery({ images = [], videos = [], gifs = [], projectId }) {
+export default function MediaGallery({ images = [], videos = [], gifs = [], mockups = [], projectId }) {
   const isEmpty = images.length === 0 && videos.length === 0 && gifs.length === 0
 
   if (isEmpty) {
@@ -24,7 +24,7 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], proj
     </div>
   )
 
-  // --- Modern Edge ---
+  // Modern Edge
   if (projectId === 'modern-edge' && images.length === 7) {
     const [mockup, ...squares] = images
 
@@ -67,7 +67,27 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], proj
     )
   }
 
-  // --- Disposition générique (masonry) ---
+  // Radar Time
+  if (projectId === 'radar-time' && images.length === 7) {
+    return (
+      <div className="media-gallery">
+        <div className="radar-time-gallery">
+          <figure className="media-item radar-time-mockup">
+            <img src={mockups[0].src} alt={mockups[0].alt} loading="lazy" />
+          </figure>
+          <div className="radar-time-grid">
+            {images.map((img, i) => (
+              <figure className="media-item" key={i}>
+                <img src={img.src} alt={img.alt} loading="lazy" />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // General
   return (
     <div className="media-gallery">
       {videosBlock}
@@ -91,3 +111,4 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], proj
     </div>
   )
 }
+

@@ -70,6 +70,7 @@ export default function ProjectCard({ project }) {
           gifs={project.media?.gifs}
           layout={project.media?.layout}
           projectId={project.id}
+          mockups={project.media.mockups}
         />
 
         <div className="project-links">

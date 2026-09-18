@@ -14,7 +14,6 @@ function randomBlobVars() {
 }
 
 const blobConfigs = [
-    // --- Grands blobs ---
     { size: 460, top: '3%', right: '8%', gradient: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', drift: '17s', morph: '12s', hue: '16s' },
     { size: 300, top: '17%', left: '6%', gradient: 'linear-gradient(150deg, var(--color-secondary), var(--color-primary))', drift: '16s', morph: '14s', hue: '18s' },
     { size: 340, top: '31%', right: '10%', gradient: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', drift: '18s', morph: '12s', hue: '14s' },
@@ -23,7 +22,6 @@ const blobConfigs = [
     { size: 330, top: '73%', left: '8%', gradient: 'linear-gradient(95deg, var(--color-secondary-soft), var(--color-primary))', drift: '19s', morph: '12s', hue: '16s' },
     { size: 280, top: '87%', right: '10%', gradient: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', drift: '16s', morph: '13s', hue: '15s' },
 
-    // --- Petits blobs, à l'opposé de chaque grand ---
     { size: 140, top: '3%', left: '8%', gradient: 'linear-gradient(150deg, var(--color-secondary), var(--color-primary))', drift: '14s', morph: '11s', hue: '13s' },
     { size: 120, top: '17%', right: '6%', gradient: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))', drift: '13s', morph: '10s', hue: '15s' },
     { size: 130, top: '31%', left: '10%', gradient: 'linear-gradient(150deg, var(--color-secondary), var(--color-primary))', drift: '15s', morph: '11s', hue: '12s' },
