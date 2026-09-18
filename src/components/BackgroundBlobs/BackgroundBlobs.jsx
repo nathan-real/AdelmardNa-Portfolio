@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+
 function randomBetween(min, max) {
     return Math.round((min + Math.random() * (max - min)) * 10) / 10
 }
@@ -32,15 +35,32 @@ const blobConfigs = [
 ]
 
 export default function BackgroundBlobs() {
+    const mouseX = useMotionValue(0)
+    const mouseY = useMotionValue(0)
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            mouseX.set((e.clientX / window.innerWidth - 0.5) * 2)
+            mouseY.set((e.clientY / window.innerHeight - 0.5) * 2)
+        }
+        window.addEventListener('mousemove', handleMouseMove)
+        return () => window.removeEventListener('mousemove', handleMouseMove)
+    }, [mouseX, mouseY])
+
+    const springX = useSpring(mouseX, { stiffness: 55, damping: 18, mass: 1 })
+    const springY = useSpring(mouseY, { stiffness: 55, damping: 18, mass: 1 })
+
+    const offsetX = useTransform(springX, [-1, 1], [-45, 45])
+    const offsetY = useTransform(springY, [-1, 1], [-45, 45])
+
     return (
-        <div className="background-layer" aria-hidden="true">
+        <motion.div className="background-layer" aria-hidden="true" style={{ x: offsetX, y: offsetY }}>
             {blobConfigs.map((b, i) => (
                 <span
                     key={i}
                     className="organic-blob"
                     style={{
-                        width: b.size,
-                        height: b.size,
+                        '--blob-size': `${b.size}px`,
                         top: b.top,
                         left: b.left,
                         right: b.right,
@@ -53,6 +73,6 @@ export default function BackgroundBlobs() {
                     }}
                 />
             ))}
-        </div>
+        </motion.div>
     )
 }

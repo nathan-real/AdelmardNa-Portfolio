@@ -3,6 +3,7 @@ import skills from '../data/skills.js'
 import social from '../data/social.js'
 import './AboutMe.css'
 import googleplayLogo from '../assets/logo/google-play.svg'
+import { useState } from 'react'
 
 function SkillGroup({ group }) {
   return (
@@ -37,6 +38,8 @@ function SkillGroup({ group }) {
 
 export default function AboutMe() {
   const [designGroup, devGroup, toolsGroup, languagesGroup] = skills
+  const [cvLang, setCvLang] = useState('fr')
+  const resumeHref = cvLang === 'fr' ? social.resumeFr : social.resumeEn
 
   return (
     <section id="about" className="section about-section">
@@ -58,20 +61,39 @@ export default function AboutMe() {
             </p>
 
             <div className="about-actions">
-              <a href={social.resumeFr} download className="btn btn-primary">
-                <FiDownload /> Download my resume
-              </a>
-              <a href={social.email} className="btn btn-outline">
-                <FiMail /> Contact me
-              </a>
+              <div className="btn btn-primary resume-btn">
+                <a href={resumeHref} download className="resume-btn-main">
+                  <FiDownload /> {'Download my resume'}
+                </a>
+                <div className="resume-lang-switch" role="group" aria-label="Choisir la langue du CV">
+                  <button
+                    type="button"
+                    className={cvLang === 'fr' ? 'active' : ''}
+                    onClick={() => setCvLang('fr')}
+                  >
+                    FR
+                  </button>
+                  <button
+                    type="button"
+                    className={cvLang === 'en' ? 'active' : ''}
+                    onClick={() => setCvLang('en')}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div className="about-links">
+              <a href={social.email} className="btn btn-outline">
+                <FiMail /> Contact me
+              </a>
               <a href={social.github} target="_blank" rel="noreferrer" aria-label="GitHub"><FiGithub /></a>
               <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><FiLinkedin /></a>
               <a href={social.googlePlay} target="_blank" rel="noreferrer" aria-label="Google Play">
                 <img src={googleplayLogo} alt="Google Play" className="about-link-icon google-play-icon" />
-              </a>            </div>
+              </a>
+            </div>
           </div>
 
           <div className="skill-stack">

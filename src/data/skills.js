@@ -44,7 +44,7 @@ const skills = [
   {
     category: 'Tools & Methods',
     type: 'text',
-    items: ['Project management', 'Teamwork', 'Human-Computer Interaction (HCI)'],
+    items: ['Project management', 'Teamwork', 'Human-Computer Interaction'],
   },
   {
     category: 'Languages',

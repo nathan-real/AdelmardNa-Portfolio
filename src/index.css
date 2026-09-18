@@ -29,6 +29,7 @@
   --font-body: 'Inter', sans-serif;
 }
 
+
 html.dark {
   --color-bg: #14131f;
   --color-bg-soft: #1b1a29;
@@ -37,6 +38,8 @@ html.dark {
   --color-primary-soft: #262244;
   --color-secondary-soft: #1e2740;
   --color-accent-soft: #3a2a1c;
+
+  --blob-scale: 1;
 }
 
 * {
@@ -145,9 +148,17 @@ html.dark .glass {
   box-shadow: var(--shadow-soft);
 }
 
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-3px);
+  }
 }
 
 .btn-outline {
@@ -155,14 +166,12 @@ html.dark .glass {
   color: var(--color-primary);
 }
 
-.btn-outline:hover {
-  background: var(--color-primary);
-  color: white;
-  transform: translateY(-3px);
-}
+
 
 .organic-blob {
   position: absolute;
+  width: calc(var(--blob-size) * var(--blob-scale, 1));
+  height: calc(var(--blob-size) * var(--blob-scale, 1));
   pointer-events: none;
   opacity: 0.55;
   animation:
@@ -221,15 +230,15 @@ html.dark .glass {
 
 @keyframes blob-hue {
   0% {
-    filter: blur(35px) hue-rotate(0deg);
+    filter: blur(20px) hue-rotate(0deg);
   }
 
   50% {
-    filter: blur(35px) hue-rotate(45deg);
+    filter: blur(20px) hue-rotate(45deg);
   }
 
   100% {
-    filter: blur(35px) hue-rotate(0deg);
+    filter: blur(20px) hue-rotate(0deg);
   }
 }
 
@@ -241,20 +250,27 @@ html.dark .glass {
 
   :root {
     --nav-width: 0px;
+    --blob-scale: 0.7;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --blob-scale: 0.5;
   }
 }
 
 .app-root {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .background-layer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -3%;
+  left: -3%;
+  width: 106%;
+  height: 106%;
   overflow: hidden;
   pointer-events: none;
   z-index: -1;

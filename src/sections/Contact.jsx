@@ -1,6 +1,8 @@
 import { FiGithub, FiLinkedin, FiPlayCircle, FiMail } from 'react-icons/fi'
 import social from '../data/social.js'
 import './Contact.css'
+import googleplayLogo from '../assets/logo/google-play.svg'
+
 
 export default function Contact() {
   return (
@@ -17,7 +19,7 @@ export default function Contact() {
             <a href={social.email} className="btn btn-primary"><FiMail /> Email</a>
             <a href={social.linkedin} target="_blank" rel="noreferrer" className="btn btn-outline"><FiLinkedin /> LinkedIn</a>
             <a href={social.github} target="_blank" rel="noreferrer" className="btn btn-outline"><FiGithub /> GitHub</a>
-            <a href={social.googlePlay} target="_blank" rel="noreferrer" className="btn btn-outline"><FiPlayCircle /> Google Play</a>
+            <a href={social.googlePlay} target="_blank" rel="noreferrer" className="btn btn-outline"><img src={googleplayLogo} alt="Google Play" className="about-link-icon google-play-icon" /> Google Play</a>
           </div>
         </div>
       </div>

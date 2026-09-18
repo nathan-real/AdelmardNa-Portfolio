@@ -5,8 +5,15 @@
   border-style: 5px solid var(--color-primary);
 }
 
-.project-card:hover {
-  box-shadow: var(--shadow-hover);
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+  }
 }
 
 @property --border-angle {
@@ -57,10 +64,6 @@
   }
 }
 
-.project-card:hover::before {
-  opacity: 1;
-  animation-play-state: running;
-}
 
 .project-header {
   display: flex;

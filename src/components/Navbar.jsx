@@ -5,11 +5,11 @@ import { FiHome, FiUser, FiBookOpen, FiFolder, FiBriefcase, FiMail } from 'react
 import './Navbar.css'
 
 const NAV_ITEMS = [
-  { to: 'home', label: 'Home', icon: FiHome },
-  { to: 'about', label: 'About', icon: FiUser },
-  { to: 'projects', label: 'Projects', icon: FiFolder },
-  { to: 'experience', label: 'Experience', icon: FiBriefcase },
-  { to: 'contact', label: 'Contact', icon: FiMail },
+  { to: 'home', label: 'Home', icon: FiHome},
+  { to: 'about', label: 'About', icon: FiUser},
+  { to: 'projects', label: 'Projects', icon: FiFolder},
+  { to: 'experience', label: 'Experience', icon: FiBriefcase},
+  { to: 'contact', label: 'Contact', icon: FiMail},
 ]
 
 function useIsHorizontalNav(breakpoint = 900) {
@@ -51,7 +51,7 @@ function DockIcon({ mouseX, mouseY, isHorizontal, item }) {
   )
 }
 
-const BOTTOM_MARGIN = 200
+const BOTTOM_MARGIN = 230
 
 export default function Navbar() {
   const mouseX = useMotionValue(Infinity)
@@ -60,38 +60,44 @@ export default function Navbar() {
   const [activeId, setActiveId] = useState('home')
 
   useEffect(() => {
-    const sections = NAV_ITEMS
-      .map((item) => document.getElementById(item.to))
-      .filter(Boolean)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting)
-        if (visible.length > 0) {
-          const topMost = visible.reduce((a, b) =>
-            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
-          )
-          setActiveId(topMost.target.id)
-        }
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
-    )
-
-    sections.forEach((section) => observer.observe(section))
+    const line = () => window.innerHeight * 0.5
 
     const handleScroll = () => {
       const pageHeight = document.documentElement.scrollHeight
       const viewportBottom = window.innerHeight + window.scrollY
       if (pageHeight - viewportBottom <= BOTTOM_MARGIN) {
         setActiveId('contact')
+        return
       }
-    }
-    window.addEventListener('scroll', handleScroll)
 
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('scroll', handleScroll)
+      const refLine = line()
+      let current = null
+
+      for (const item of NAV_ITEMS) {
+        const el = document.getElementById(item.to)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= refLine && rect.bottom >= refLine) {
+          current = item.to
+          break
+        }
+      }
+
+      if (!current) {
+        for (const item of NAV_ITEMS) {
+          const el = document.getElementById(item.to)
+          if (el && el.getBoundingClientRect().top <= refLine) {
+            current = item.to
+          }
+        }
+      }
+
+      if (current) setActiveId(current)
     }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const handleMouseMove = (e) => {
