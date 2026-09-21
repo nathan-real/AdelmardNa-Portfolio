@@ -56,8 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
-  background: var(--color-primary-soft);
+  color: var(--color-primary-soft);
+  background: var(--color-primary);
   animation: bounce 2s infinite;
   cursor: pointer;
 }
@@ -77,5 +77,9 @@
 @media (max-width: 900px) {
   .hero {
     padding-right: 0;
+  }
+
+  .scroll-hint {
+    margin-bottom: 60px;
   }
 }
