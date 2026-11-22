@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nathan-real.github.io/AdelmardNa-Portfolio/sitemap.xml
