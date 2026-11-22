@@ -6,7 +6,7 @@ import flutterLogo from '../assets/logo/flutter-svgrepo-com.svg'
 import csharpLogo from '../assets/logo/csharp-svgrepo-com.svg'
 import gitLogo from '../assets/logo/git-svgrepo-com.svg'
 import figmaLogo from '../assets/logo/figmaicon.svg'
-import watchFaceStudioLogo from '../assets/logo/watchfacestudio.png'
+import watchFaceStudioLogo from '../assets/logo/watchfacestudio.webp'
 import jitterLogo from '../assets/logo/jitter.svg'
 import pythonLogo from '../assets/logo/python-svgrepo-com.svg'
 import photoshopLogo from '../assets/logo/photoshop.svg'
@@ -15,9 +15,9 @@ import dartLogo from '../assets/logo/dart.svg'
 
 const skills = [
   {
-    category: 'Design & Prototyping',
+    category: { en: 'Design & Prototyping', fr: 'Design & prototypage' },
     type: 'mixed',
-    tags: ['UI/UX', 'Motion Design', 'User-Centered Design'],
+    tags: ['UI/UX', 'Motion Design', { en: 'User-Centered Design', fr: 'Conception centrée utilisateur' }],
     items: [
       { name: 'Figma', logo: figmaLogo },
       { name: 'Watch Face Studio', logo: watchFaceStudioLogo },
@@ -26,7 +26,7 @@ const skills = [
     ],
   },
   {
-    category: 'Development',
+    category: { en: 'Development', fr: 'Développement' },
     type: 'logos',
     items: [
       { name: 'React', logo: reactLogo },
@@ -42,14 +42,22 @@ const skills = [
     ],
   },
   {
-    category: 'Tools & Methods',
+    category: { en: 'Tools & Methods', fr: 'Outils & méthodes' },
     type: 'text',
-    items: ['Project management', 'Teamwork', 'Human-Computer Interaction'],
+    items: [
+      { en: 'Project management', fr: 'Gestion de projet' },
+      { en: 'Teamwork', fr: 'Travail en équipe' },
+      { en: 'Human-Computer Interaction', fr: 'Interaction humain-machine' },
+    ],
   },
   {
-    category: 'Languages',
+    category: { en: 'Languages', fr: 'Langues' },
     type: 'text',
-    items: ['French (native)', 'English', 'Japanese (basic)'],
+    items: [
+      { en: 'French (native)', fr: 'Français (langue maternelle)' },
+      { en: 'English', fr: 'Anglais' },
+      { en: 'Japanese (basic)', fr: 'Japonais (notions)' },
+    ],
   },
 ]
 

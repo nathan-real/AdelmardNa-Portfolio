@@ -52,7 +52,8 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.nav-link:hover .nav-label {
+.nav-link:hover .nav-label,
+.nav-link:focus-visible .nav-label {
   opacity: 1;
   transform: translateY(-50%) translateX(-12px);
 }

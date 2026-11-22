@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { useEffect, useMemo } from 'react'
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
 
 function randomBetween(min, max) {
     return Math.round((min + Math.random() * (max - min)) * 10) / 10
@@ -37,15 +37,19 @@ const blobConfigs = [
 export default function BackgroundBlobs() {
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
+    const reduceMotion = useReducedMotion()
+    // Random drift values are computed once, not on every render.
+    const blobVars = useMemo(() => blobConfigs.map(() => randomBlobVars()), [])
 
     useEffect(() => {
+        if (reduceMotion) return
         const handleMouseMove = (e) => {
             mouseX.set((e.clientX / window.innerWidth - 0.5) * 2)
             mouseY.set((e.clientY / window.innerHeight - 0.5) * 2)
         }
         window.addEventListener('mousemove', handleMouseMove)
         return () => window.removeEventListener('mousemove', handleMouseMove)
-    }, [mouseX, mouseY])
+    }, [mouseX, mouseY, reduceMotion])
 
     const springX = useSpring(mouseX, { stiffness: 55, damping: 18, mass: 1 })
     const springY = useSpring(mouseY, { stiffness: 55, damping: 18, mass: 1 })
@@ -69,7 +73,7 @@ export default function BackgroundBlobs() {
                         '--drift-duration': b.drift,
                         '--morph-duration': b.morph,
                         '--hue-duration': b.hue,
-                        ...randomBlobVars(),
+                        ...blobVars[i],
                     }}
                 />
             ))}

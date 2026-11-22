@@ -3,3 +3,6 @@ dist
 .DS_Store
 *.local
 .env
+
+# Full-size source media (optimized copies live in src/assets, see scripts/optimize-media.sh)
+media-originals/

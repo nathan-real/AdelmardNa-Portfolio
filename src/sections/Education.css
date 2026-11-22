@@ -31,7 +31,7 @@
 .timeline-header h3 { font-size: 1.3rem; }
 .timeline-period { color: var(--color-text-soft); font-size: 0.9rem; font-weight: 600; }
 
-.timeline-degree { color: var(--color-primary); font-weight: 600; margin-bottom: 14px; }
+.timeline-degree { color: var(--color-primary-text); font-weight: 600; margin-bottom: 14px; }
 .timeline-desc { line-height: 1.7; margin-bottom: 16px; }
 
 .timeline-highlights {

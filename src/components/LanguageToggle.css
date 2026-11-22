@@ -1,0 +1,39 @@
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+}
+
+.lang-toggle button {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-soft);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.lang-toggle button.active {
+  background: linear-gradient(135deg, var(--color-primary-text), var(--color-secondary-text));
+  color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lang-toggle button:not(.active):hover {
+    color: var(--color-text);
+  }
+}
+
+@media (max-width: 600px) {
+  .lang-toggle {
+    top: 12px;
+    left: 12px;
+  }
+}

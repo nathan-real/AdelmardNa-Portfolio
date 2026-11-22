@@ -1,24 +1,40 @@
+import { useLang } from '../i18n/LanguageContext.jsx'
 import './MediaGallery.css'
 
-export default function MediaGallery({ images = [], videos = [], gifs = [], mockups = [], projectId }) {
-  const isEmpty = images.length === 0 && videos.length === 0 && gifs.length === 0
+function Img({ img, tr }) {
+  return <img src={img.src} alt={tr(img.alt)} loading="lazy" decoding="async" />
+}
+
+// Short looping animation (ex-GIF) rendered as a muted video.
+function Animation({ anim, tr }) {
+  return (
+    <video
+      src={anim.src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="none"
+      role="img"
+      aria-label={tr(anim.alt)}
+    />
+  )
+}
+
+export default function MediaGallery({ images = [], videos = [], animations = [], mockups = [], projectId }) {
+  const { t, tr } = useLang()
+  const isEmpty = images.length === 0 && videos.length === 0 && animations.length === 0
 
   if (isEmpty) {
-    return (
-      <div className="media-placeholder">
-        Soon
-      </div>
-    )
+    return <div className="media-placeholder">{t.projects.soon}</div>
   }
 
   const videosBlock = videos.length > 0 && (
     <div className="media-videos">
       {videos.map((video, i) => (
         <figure className="media-item media-video" key={`vid-${i}`}>
-          <video autoPlay loop muted playsInline preload="metadata" poster={video.poster}>
-            <source src={video.src} />
-          </video>
-          {video.caption && <figcaption>{video.caption}</figcaption>}
+          <video autoPlay loop muted playsInline preload="none" poster={video.poster} src={video.src} />
+          {video.caption && <figcaption>{tr(video.caption)}</figcaption>}
         </figure>
       ))}
     </div>
@@ -32,13 +48,13 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], mock
       <div className="media-gallery">
         <div className="modern-edge-gallery">
           <figure className="media-item modern-edge-mockup">
-            <img src={mockup.src} alt={mockup.alt} loading="lazy" />
+            <Img img={mockup} tr={tr} />
           </figure>
 
           <div className="modern-edge-grid">
             {squares.map((img, i) => (
               <figure className="media-item" key={i}>
-                <img src={img.src} alt={img.alt} loading="lazy" />
+                <Img img={img} tr={tr} />
               </figure>
             ))}
           </div>
@@ -48,17 +64,17 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], mock
   }
 
   // Madic pump
-  if (projectId === 'madic-pump' && images.length === 1 && gifs.length === 4) {
+  if (projectId === 'madic-pump' && images.length === 1 && animations.length === 4) {
     return (
       <div className="media-gallery">
         <div className="madic-pump-gallery">
           <figure className="media-item madic-bills">
-            <img src={images[0].src} alt={images[0].alt} loading="lazy" />
+            <Img img={images[0]} tr={tr} />
           </figure>
           <div className="madic-pump-grid">
-            {gifs.map((gif, i) => (
+            {animations.map((anim, i) => (
               <figure className="media-item" key={i}>
-                <img src={gif.src} alt={gif.alt} loading="lazy" />
+                <Animation anim={anim} tr={tr} />
               </figure>
             ))}
           </div>
@@ -73,12 +89,12 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], mock
       <div className="media-gallery">
         <div className="radar-time-gallery">
           <figure className="media-item radar-time-mockup">
-            <img src={mockups[0].src} alt={mockups[0].alt} loading="lazy" />
+            <Img img={mockups[0]} tr={tr} />
           </figure>
           <div className="radar-time-grid">
             {images.map((img, i) => (
               <figure className="media-item" key={i}>
-                <img src={img.src} alt={img.alt} loading="lazy" />
+                <Img img={img} tr={tr} />
               </figure>
             ))}
           </div>
@@ -91,19 +107,19 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], mock
   return (
     <div className="media-gallery">
       {videosBlock}
-      {(images.length > 0 || gifs.length > 0) && (
+      {(images.length > 0 || animations.length > 0) && (
         <div className="media-images">
           {images.map((img, i) => (
             <figure
               className={`media-item${img.transparent ? ' media-item--transparent' : ''}`}
               key={`img-${i}`}
             >
-              <img src={img.src} alt={img.alt} loading="lazy" />
+              <Img img={img} tr={tr} />
             </figure>
           ))}
-          {gifs.map((gif, i) => (
-            <figure className="media-item" key={`gif-${i}`}>
-              <img src={gif.src} alt={gif.alt} loading="lazy" />
+          {animations.map((anim, i) => (
+            <figure className="media-item" key={`anim-${i}`}>
+              <Animation anim={anim} tr={tr} />
             </figure>
           ))}
         </div>
@@ -111,4 +127,3 @@ export default function MediaGallery({ images = [], videos = [], gifs = [], mock
     </div>
   )
 }
-

@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-scroll'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { FiHome, FiUser, FiBookOpen, FiFolder, FiBriefcase, FiMail } from 'react-icons/fi'
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
+import { FiHome, FiUser, FiFolder, FiBriefcase, FiMail } from 'react-icons/fi'
+import { useLang } from '../i18n/LanguageContext.jsx'
 import './Navbar.css'
 
 const NAV_ITEMS = [
-  { to: 'home', label: 'Home', icon: FiHome},
-  { to: 'about', label: 'About', icon: FiUser},
-  { to: 'projects', label: 'Projects', icon: FiFolder},
-  { to: 'experience', label: 'Experience', icon: FiBriefcase},
-  { to: 'contact', label: 'Contact', icon: FiMail},
+  { to: 'home', icon: FiHome },
+  { to: 'about', icon: FiUser },
+  { to: 'projects', icon: FiFolder },
+  { to: 'experience', icon: FiBriefcase },
+  { to: 'contact', icon: FiMail },
 ]
 
 function useIsHorizontalNav(breakpoint = 900) {
@@ -24,6 +25,7 @@ function useIsHorizontalNav(breakpoint = 900) {
 
 function DockIcon({ mouseX, mouseY, isHorizontal, item }) {
   const ref = useRef(null)
+  const reduceMotion = useReducedMotion()
 
   const distance = useTransform([mouseX, mouseY], ([x, y]) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, y: 0, width: 0, height: 0 }
@@ -36,17 +38,17 @@ function DockIcon({ mouseX, mouseY, isHorizontal, item }) {
   const scale = useSpring(scaleRaw, { mass: 0.1, stiffness: 200, damping: 14 })
 
 
-  if (isHorizontal) {
+  if (isHorizontal || reduceMotion) {
     return (
       <span ref={ref} className="nav-icon">
-        <item.icon />
+        <item.icon aria-hidden="true" />
       </span>
     )
   }
 
   return (
     <motion.span ref={ref} style={{ scale }} className="nav-icon">
-      <item.icon />
+      <item.icon aria-hidden="true" />
     </motion.span>
   )
 }
@@ -58,6 +60,7 @@ export default function Navbar() {
   const mouseY = useMotionValue(Infinity)
   const isHorizontal = useIsHorizontalNav()
   const [activeId, setActiveId] = useState('home')
+  const { t } = useLang()
 
   useEffect(() => {
     const line = () => window.innerHeight * 0.5
@@ -111,19 +114,22 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar glass">
+    <nav className="navbar glass" aria-label={t.nav.label}>
       <ul className="navbar-list" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         {NAV_ITEMS.map((item) => (
           <li key={item.to}>
             <Link
               to={item.to}
+              href={`#${item.to}`}
               smooth={true}
               duration={500}
               offset={-40}
+              aria-label={t.nav[item.to]}
+              aria-current={activeId === item.to ? 'true' : undefined}
               className={`nav-link${activeId === item.to ? ' active' : ''}`}
             >
               <DockIcon mouseX={mouseX} mouseY={mouseY} isHorizontal={isHorizontal} item={item} />
-              <span className="nav-label">{item.label}</span>
+              <span className="nav-label" aria-hidden="true">{t.nav[item.to]}</span>
             </Link>
           </li>
         ))}

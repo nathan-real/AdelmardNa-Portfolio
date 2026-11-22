@@ -5,11 +5,13 @@ import Projects from './sections/Projects.jsx'
 import Experience from './sections/Experience.jsx'
 import Contact from './sections/Contact.jsx'
 import BackgroundBlobs from './components/BackgroundBlobs/BackgroundBlobs.jsx'
+import LanguageToggle from './components/LanguageToggle.jsx'
 
 function App() {
   return (
     <div className="app-root">
       <BackgroundBlobs />
+      <LanguageToggle />
       <Navbar />
       <main>
         <Hero />

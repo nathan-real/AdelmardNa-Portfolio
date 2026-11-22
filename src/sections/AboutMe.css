@@ -51,7 +51,7 @@
   height: 42px;
   border-radius: 50%;
   background: var(--color-primary-soft);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,17 +62,17 @@
 @media (hover: hover) and (pointer: fine) {
 
   .about-links a:not(.btn):hover {
-    background: var(--color-primary);
+    background: var(--color-primary-text);
     color: white;
     transform: translateY(-3px);
   }
 
   .skill-logo:hover {
     transform: scale(1.12);
+  }
 
-    .skill-logo:hover .skill-logo-name {
-      color: var(--color-accent);
-    }
+  .skill-logo:hover .skill-logo-name {
+    color: var(--color-accent-text);
   }
 }
 
@@ -80,8 +80,8 @@
   padding: 22px 26px;
 }
 
-.skill-group h4 {
-  color: var(--color-secondary);
+.skill-group h3 {
+  color: var(--color-secondary-text);
   margin-bottom: 12px;
   font-size: 0.95rem;
   text-align: left;
@@ -100,7 +100,7 @@
   padding: 6px 14px;
   border-radius: 999px;
   background: var(--color-secondary-soft);
-  color: var(--color-secondary);
+  color: var(--color-secondary-text);
 }
 
 .skill-logos {
@@ -237,7 +237,7 @@
 
 .resume-lang-switch button.active {
   background: rgba(255, 255, 255, 0.9);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   opacity: 1;
 }
 
